@@ -1,0 +1,38 @@
+name: Test Calculator
+on: [push, workflow_dispatch]
+
+jobs:
+  run-calculator:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Get your calculator
+        uses: actions/checkout@v4
+      
+      - name: 🧮 Test Addition
+        run: |
+          echo "Testing: 5 + 3"
+          echo -e "1\n5\n3" | python calculator.py
+      
+      - name: 🧮 Test Subtraction
+        run: |
+          echo "Testing: 10 - 4"
+          echo -e "2\n10\n4" | python calculator.py
+      
+      - name: 🧮 Test Multiplication
+        run: |
+          echo "Testing: 6 * 7"
+          echo -e "3\n6\n7" | python calculator.py
+      
+      - name: 🧮 Test Division
+        run: |
+          echo "Testing: 20 / 5"
+          echo -e "4\n20\n5" | python calculator.py
+      
+      - name: 🧮 Test Division by Zero
+        run: |
+          echo "Testing: 10 / 0 (should show error)"
+          echo -e "4\n10\n0" | python calculator.py
+      
+      - name: ✅ Success
+        run: echo "All calculator tests completed!"
